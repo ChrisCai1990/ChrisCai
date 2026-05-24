@@ -21,27 +21,42 @@
   }
 
   .header {
-    background: #1B3F6E;
-    padding: 72px 24px 18px;
+    background: linear-gradient(170deg, #0F2847 0%, #1B3F6E 55%, #20497E 100%);
+    padding: 36px 28px 24px;
     text-align: center;
   }
+  .header-accent {
+    width: 40px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #5B9BD5, transparent);
+    border-radius: 2px;
+    margin: 0 auto 20px;
+  }
   .header-brand {
-    font-size: 15px;
-    color: #9BBCDE;
-    letter-spacing: 0.08em;
-    margin-bottom: 7px;
+    font-size: 13px;
+    color: #7AAED6;
+    letter-spacing: 0.18em;
+    margin-bottom: 14px;
   }
   .header-title {
-    font-size: 24px;
+    font-size: 27px;
     font-weight: bold;
     color: #FFFFFF;
-    letter-spacing: 0.05em;
-    margin-bottom: 7px;
+    letter-spacing: 0.08em;
+    margin-bottom: 16px;
+    line-height: 1.25;
+  }
+  .header-sub-wrap {
+    display: inline-block;
+    background: rgba(91,155,213,0.15);
+    border: 1px solid rgba(91,155,213,0.3);
+    border-radius: 24px;
+    padding: 8px 18px;
   }
   .header-sub {
-    font-size: 13px;
+    font-size: 12px;
     color: #9BBCDE;
-    line-height: 1.55;
+    line-height: 1.65;
   }
 
   .tag-bar {
@@ -198,9 +213,12 @@
 <div class="page">
 
   <div class="header">
+    <div class="header-accent"></div>
     <div class="header-brand">汇泽健康管理 · 刘院长团队</div>
     <div class="header-title">自免疾病精准调理套餐</div>
-    <div class="header-sub">桥本 · 类风湿 · 干燥综合征 · 红斑狼疮 · 自免肝 · 自免脑等全系列自免疾病</div>
+    <div class="header-sub-wrap">
+      <div class="header-sub">桥本 · 类风湿 · 干燥综合征 · 红斑狼疮 · 自免肝 · 自免脑等全系列自免疾病</div>
+    </div>
   </div>
 
   <div class="tag-bar">
