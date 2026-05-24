@@ -12,99 +12,93 @@
     background: #F0F5FB;
     display: flex;
     justify-content: center;
-    padding: 0;
   }
 
   .page {
-    width: 760px;
+    width: 480px;
     max-width: 100%;
     background: #F0F5FB;
   }
 
-  /* Header */
   .header {
     background: #1B3F6E;
-    padding: 28px 40px 24px;
+    padding: 16px 24px 14px;
     text-align: center;
   }
   .header-brand {
-    font-size: 14px;
+    font-size: 15px;
     color: #9BBCDE;
     letter-spacing: 0.08em;
-    margin-bottom: 10px;
+    margin-bottom: 7px;
   }
   .header-title {
-    font-size: 26px;
+    font-size: 24px;
     font-weight: bold;
     color: #FFFFFF;
     letter-spacing: 0.05em;
-    margin-bottom: 10px;
+    margin-bottom: 7px;
   }
   .header-sub {
     font-size: 13px;
     color: #9BBCDE;
-    line-height: 1.6;
+    line-height: 1.55;
   }
 
-  /* Tag Bar */
   .tag-bar {
     background: #2C5F9E;
-    padding: 14px 40px;
+    padding: 11px 24px;
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 12px;
   }
   .tag-badge {
     background: #C5D9EE;
     color: #1B3F6E;
     font-size: 13px;
     font-weight: bold;
-    padding: 4px 12px;
+    padding: 3px 11px;
     border-radius: 20px;
     white-space: nowrap;
   }
   .tag-title {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: bold;
     color: #FFFFFF;
     letter-spacing: 0.04em;
   }
 
-  /* Main Content */
   .main {
-    padding: 20px 40px;
+    padding: 12px 16px;
   }
 
-  /* Card */
   .card {
     background: #FFFFFF;
     border: 2px solid #C5D9EE;
-    border-radius: 16px;
-    padding: 24px 24px 16px;
-    margin-bottom: 16px;
+    border-radius: 14px;
+    padding: 14px 16px 10px;
+    margin-bottom: 12px;
   }
   .card-header {
     font-size: 13px;
     font-weight: bold;
     color: #888780;
     letter-spacing: 0.06em;
-    margin-bottom: 16px;
-    padding-bottom: 12px;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
     border-bottom: 1px solid #EBF2F9;
   }
 
-  /* Item Row */
   .item {
     display: flex;
     align-items: flex-start;
-    padding: 12px 0;
+    padding: 8px 0;
     border-bottom: 1px solid #EBF2F9;
   }
   .item:last-child { border-bottom: none; }
 
   .item-badge {
-    width: 26px;
-    height: 26px;
+    width: 24px;
+    height: 24px;
     background: #7AAED6;
     border-radius: 50%;
     color: #FFFFFF;
@@ -114,12 +108,12 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    margin-top: 2px;
+    margin-top: 1px;
   }
 
   .item-content {
     flex: 1;
-    margin-left: 12px;
+    margin-left: 10px;
   }
   .item-name {
     font-size: 15px;
@@ -131,75 +125,63 @@
     color: #2C5F9E;
     font-weight: bold;
   }
-  .item-subs {
-    margin-top: 6px;
-  }
+  .item-subs { margin-top: 3px; }
   .item-sub {
     font-size: 12px;
     color: #888780;
-    line-height: 1.6;
-    padding-left: 2px;
+    line-height: 1.5;
   }
 
   .item-price {
     white-space: nowrap;
-    margin-left: 16px;
+    margin-left: 12px;
     font-size: 15px;
     font-weight: bold;
     color: #7AAED6;
-    padding-top: 2px;
+    padding-top: 1px;
   }
 
-  /* Total Row */
   .total-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 14px 0 2px;
-    margin-top: 4px;
+    padding: 10px 0 2px;
   }
-  .total-label {
-    font-size: 13px;
-    color: #888780;
-  }
+  .total-label { font-size: 13px; color: #888780; }
   .total-price {
-    font-size: 16px;
+    font-size: 15px;
     color: #B4B2A9;
     text-decoration: line-through;
     font-weight: 500;
   }
 
-  /* Price Block */
   .price-block {
     background: #2C5F9E;
-    border-radius: 16px;
-    padding: 20px 24px;
+    border-radius: 14px;
+    padding: 14px 20px;
     text-align: center;
-    margin-bottom: 0;
   }
   .price-hint {
     font-size: 13px;
     color: #9BBCDE;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     letter-spacing: 0.04em;
   }
   .price-main {
-    font-size: 52px;
+    font-size: 54px;
     font-weight: bold;
     color: #FFFFFF;
     line-height: 1;
-    letter-spacing: -0.01em;
   }
-  .price-main .price-unit {
+  .price-unit {
     font-size: 28px;
     vertical-align: middle;
     margin-right: 2px;
   }
 
-  /* CTA */
   .cta {
     background: #5B9BD5;
-    padding: 18px 40px;
+    padding: 14px 24px;
     text-align: center;
   }
   .cta-main {
@@ -207,38 +189,29 @@
     font-weight: bold;
     color: #FFFFFF;
     letter-spacing: 0.05em;
-    margin-bottom: 6px;
+    margin-bottom: 5px;
   }
-  .cta-sub {
-    font-size: 13px;
-    color: #D6E8F7;
-  }
+  .cta-sub { font-size: 13px; color: #D6E8F7; }
 </style>
 </head>
 <body>
 <div class="page">
 
-  <!-- Header -->
   <div class="header">
     <div class="header-brand">汇泽健康管理 · 刘院长团队</div>
     <div class="header-title">自免疾病精准调理套餐</div>
     <div class="header-sub">桥本 · 类风湿 · 干燥综合征 · 红斑狼疮 · 自免肝 · 自免脑等全系列自免疾病</div>
   </div>
 
-  <!-- Tag Bar -->
   <div class="tag-bar">
     <span class="tag-badge">基础版</span>
     <span class="tag-title">自免疾病精准调理套餐</span>
   </div>
 
-  <!-- Main -->
   <div class="main">
-
-    <!-- Value Detail Card -->
     <div class="card">
       <div class="card-header">套餐权益明细</div>
 
-      <!-- Item 1 -->
       <div class="item">
         <div class="item-badge">1</div>
         <div class="item-content">
@@ -250,7 +223,6 @@
         <div class="item-price">¥3,280</div>
       </div>
 
-      <!-- Item 2 -->
       <div class="item">
         <div class="item-badge">2</div>
         <div class="item-content">
@@ -259,20 +231,18 @@
         <div class="item-price">¥1,000</div>
       </div>
 
-      <!-- Item 3 -->
       <div class="item">
         <div class="item-badge">3</div>
         <div class="item-content">
           <div class="item-name">定制专属自免疾病调理方案</div>
           <div class="item-subs">
-            <div class="item-sub">· 个性化饮食 · 运动 · 睡眠 · 情绪压力方案（¥1,000）</div>
+            <div class="item-sub">· 饮食 · 运动 · 睡眠 · 情绪压力方案（¥1,000）</div>
             <div class="item-sub">· 个性化营养补充方案（¥1,000）</div>
           </div>
         </div>
         <div class="item-price">¥2,000</div>
       </div>
 
-      <!-- Item 4 -->
       <div class="item">
         <div class="item-badge">4</div>
         <div class="item-content">
@@ -281,7 +251,6 @@
         <div class="item-price">¥2,500</div>
       </div>
 
-      <!-- Item 5 -->
       <div class="item">
         <div class="item-badge">5</div>
         <div class="item-content">
@@ -290,7 +259,6 @@
         <div class="item-price">¥2,500</div>
       </div>
 
-      <!-- Item 6 -->
       <div class="item">
         <div class="item-badge">6</div>
         <div class="item-content">
@@ -299,22 +267,18 @@
         <div class="item-price">¥1,000</div>
       </div>
 
-      <!-- Total -->
       <div class="total-row">
         <span class="total-label">权益总价值：</span>
         <span class="total-price">¥13,280</span>
       </div>
     </div>
 
-    <!-- Price Block -->
     <div class="price-block">
       <div class="price-hint">刘院长自免专属优惠价 · 立省 ¥10,300</div>
       <div class="price-main"><span class="price-unit">¥</span>2,980</div>
     </div>
-
   </div>
 
-  <!-- CTA -->
   <div class="cta">
     <div class="cta-main">检测找根源 · 精准调理 · 全程有人陪</div>
     <div class="cta-sub">私信健康助理 · 免费评估你的情况</div>

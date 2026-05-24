@@ -12,65 +12,56 @@
     background: #F0F5FB;
     display: flex;
     justify-content: center;
-    padding: 0;
   }
 
   .page {
-    width: 760px;
+    width: 480px;
     max-width: 100%;
     background: #F0F5FB;
   }
 
-  /* Header */
   .header {
     background: #1B3F6E;
-    padding: 28px 40px 24px;
+    padding: 16px 24px 14px;
     text-align: center;
   }
   .header-brand {
-    font-size: 14px;
+    font-size: 15px;
     color: #9BBCDE;
     letter-spacing: 0.08em;
-    margin-bottom: 10px;
+    margin-bottom: 7px;
   }
   .header-title {
-    font-size: 26px;
+    font-size: 24px;
     font-weight: bold;
     color: #FFFFFF;
     letter-spacing: 0.05em;
-    margin-bottom: 10px;
+    margin-bottom: 7px;
   }
   .header-sub {
     font-size: 13px;
     color: #9BBCDE;
-    line-height: 1.6;
+    line-height: 1.55;
   }
 
-  /* Main Content */
   .main {
-    padding: 20px 40px;
+    padding: 12px 16px;
   }
 
-  /* Compare Table Container */
+  /* Compare Table */
   .table-container {
     background: #FFFFFF;
-    border-radius: 16px;
+    border-radius: 14px;
     overflow: hidden;
     border: 2px solid #C5D9EE;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
   }
 
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
+  table { width: 100%; border-collapse: collapse; }
 
-  /* Table Header */
-  thead tr {
-    background: #1B3F6E;
-  }
+  thead tr { background: #1B3F6E; }
   th {
-    padding: 14px 12px;
+    padding: 12px 8px;
     font-size: 14px;
     font-weight: bold;
     color: #FFFFFF;
@@ -79,37 +70,27 @@
   }
   th.col-label {
     text-align: left;
-    padding-left: 20px;
-    width: 44%;
+    padding-left: 14px;
+    width: 42%;
     background: #1B3F6E;
   }
-  th.col-up {
-    background: #5B9BD5;
-    width: 28%;
-  }
-  th.col-basic {
-    background: #2C5F9E;
-    width: 28%;
-  }
+  th.col-up   { background: #5B9BD5; width: 29%; }
+  th.col-basic { background: #2C5F9E; width: 29%; }
   th .col-price {
     display: block;
-    font-size: 18px;
+    font-size: 17px;
     font-weight: bold;
-    margin-top: 4px;
-    letter-spacing: -0.01em;
+    margin-top: 3px;
   }
 
-  /* Table Body */
   tbody tr:nth-child(odd)  { background: #FFFFFF; }
   tbody tr:nth-child(even) { background: #F7FAFD; }
-
   tbody tr:last-child td {
     border-top: 2px solid #C5D9EE;
-    font-weight: 600;
   }
 
   td {
-    padding: 13px 12px;
+    padding: 10px 8px;
     font-size: 14px;
     color: #2C2C2A;
     text-align: center;
@@ -117,145 +98,99 @@
   }
   td.col-label {
     text-align: left;
-    padding-left: 20px;
-    color: #2C2C2A;
+    padding-left: 14px;
     font-size: 14px;
   }
-
   tbody tr:last-child td { border-bottom: none; }
 
-  /* Check / dash / value */
-  .check-up {
-    color: #5B9BD5;
-    font-size: 20px;
-    font-weight: bold;
-  }
-  .check-basic {
-    color: #7AAED6;
-    font-size: 20px;
-    font-weight: bold;
-  }
-  .dash {
-    color: #C5D9EE;
-    font-size: 20px;
-  }
-  .val-up {
-    color: #1B3F6E;
-    font-weight: bold;
-    font-size: 14px;
-  }
-  .val-basic {
-    color: #2C5F9E;
-    font-size: 14px;
-  }
-  .val-strikethrough {
-    text-decoration: line-through;
-    color: #B4B2A9;
-    font-size: 14px;
-  }
+  .check-up    { color: #5B9BD5; font-size: 19px; font-weight: bold; }
+  .check-basic { color: #7AAED6; font-size: 19px; font-weight: bold; }
+  .dash        { color: #C5D9EE; font-size: 19px; }
+  .val-up      { color: #1B3F6E; font-weight: bold; font-size: 14px; }
+  .val-basic   { color: #2C5F9E; font-size: 14px; }
+  .val-strike  { text-decoration: line-through; color: #B4B2A9; font-size: 14px; }
 
-  /* Price Row (dual column) */
+  /* Dual Price */
   .price-row {
     display: flex;
-    gap: 16px;
+    gap: 12px;
     margin-bottom: 0;
   }
   .price-box {
     flex: 1;
     border-radius: 14px;
-    padding: 18px 0;
+    padding: 14px 0;
     text-align: center;
   }
   .price-box.up    { background: #1B3F6E; }
   .price-box.basic { background: #2C5F9E; }
 
-  .price-box-label {
-    font-size: 13px;
-    color: #9BBCDE;
-    margin-bottom: 6px;
-    letter-spacing: 0.04em;
-  }
   .price-box-badge {
     display: inline-block;
     font-size: 11px;
     font-weight: bold;
-    padding: 2px 8px;
+    padding: 2px 9px;
     border-radius: 12px;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
   }
-  .price-box.up .price-box-badge {
-    background: #5B9BD5;
-    color: #FFFFFF;
-  }
-  .price-box.basic .price-box-badge {
-    background: #7AAED6;
-    color: #FFFFFF;
+  .price-box.up .price-box-badge    { background: #5B9BD5; color: #FFF; }
+  .price-box.basic .price-box-badge { background: #7AAED6; color: #FFF; }
+
+  .price-box-hint {
+    font-size: 12px;
+    color: #9BBCDE;
+    margin-bottom: 6px;
   }
   .price-box-main {
-    font-size: 42px;
+    font-size: 40px;
     font-weight: bold;
     color: #FFFFFF;
     line-height: 1;
-    letter-spacing: -0.01em;
   }
-  .price-box-main .price-unit {
-    font-size: 22px;
+  .price-unit {
+    font-size: 21px;
     vertical-align: middle;
-    margin-right: 2px;
+    margin-right: 1px;
   }
   .price-box-save {
     font-size: 12px;
     color: #9BBCDE;
-    margin-top: 8px;
+    margin-top: 6px;
   }
 
-  /* CTA */
   .cta {
     background: #5B9BD5;
-    padding: 18px 40px;
+    padding: 14px 24px;
     text-align: center;
-    margin-top: 16px;
+    margin-top: 12px;
   }
   .cta-main {
     font-size: 16px;
     font-weight: bold;
     color: #FFFFFF;
     letter-spacing: 0.04em;
-    margin-bottom: 6px;
+    margin-bottom: 5px;
   }
-  .cta-sub {
-    font-size: 13px;
-    color: #D6E8F7;
-  }
+  .cta-sub { font-size: 13px; color: #D6E8F7; }
 </style>
 </head>
 <body>
 <div class="page">
 
-  <!-- Header -->
   <div class="header">
     <div class="header-brand">汇泽健康管理 · 刘院长团队</div>
     <div class="header-title">自免疾病精准调理套餐</div>
     <div class="header-sub">桥本 · 类风湿 · 干燥综合征 · 红斑狼疮 · 自免肝 · 自免脑等全系列自免疾病</div>
   </div>
 
-  <!-- Main -->
   <div class="main">
-
-    <!-- Compare Table -->
     <div class="table-container">
       <table>
         <thead>
           <tr>
             <th class="col-label">服务项目</th>
-            <th class="col-up">
-              升级版
-              <span class="col-price">¥5,680</span>
-            </th>
-            <th class="col-basic">
-              基础版
-              <span class="col-price">¥2,980</span>
-            </th>
+            <th class="col-up">升级版<span class="col-price">¥5,680</span></th>
+            <th class="col-basic">基础版<span class="col-price">¥2,980</span></th>
           </tr>
         </thead>
         <tbody>
@@ -301,32 +236,29 @@
           </tr>
           <tr>
             <td class="col-label">权益总价值</td>
-            <td><span class="val-strikethrough">¥21,980</span></td>
-            <td><span class="val-strikethrough">¥13,280</span></td>
+            <td><span class="val-strike">¥21,980</span></td>
+            <td><span class="val-strike">¥13,280</span></td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <!-- Dual Price Block -->
     <div class="price-row">
       <div class="price-box up">
         <div class="price-box-badge">推荐 · 升级版</div>
-        <div class="price-box-label">刘院长专属优惠价</div>
+        <div class="price-box-hint">刘院长专属优惠价</div>
         <div class="price-box-main"><span class="price-unit">¥</span>5,680</div>
         <div class="price-box-save">立省 ¥16,300</div>
       </div>
       <div class="price-box basic">
         <div class="price-box-badge">基础版</div>
-        <div class="price-box-label">刘院长专属优惠价</div>
+        <div class="price-box-hint">刘院长专属优惠价</div>
         <div class="price-box-main"><span class="price-unit">¥</span>2,980</div>
         <div class="price-box-save">立省 ¥10,300</div>
       </div>
     </div>
-
   </div>
 
-  <!-- CTA -->
   <div class="cta">
     <div class="cta-main">不确定选哪款？私信健康助理免费评估</div>
     <div class="cta-sub">汇泽健康管理 · 刘院长团队</div>
