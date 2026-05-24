@@ -14,216 +14,106 @@
     justify-content: center;
   }
 
-  .page {
-    width: 480px;
-    max-width: 100%;
-    background: #F0F5FB;
-  }
+  .page { width: 390px; max-width: 100%; background: #F0F5FB; }
 
-  /* Header */
+  /* ── Header ── */
   .header {
     background: linear-gradient(170deg, #0F2847 0%, #1B3F6E 55%, #20497E 100%);
-    padding: 36px 28px 24px;
+    padding: 22px 24px 16px;
     text-align: center;
   }
   .header-accent {
-    width: 40px;
-    height: 3px;
+    width: 36px; height: 3px;
     background: linear-gradient(90deg, transparent, #5B9BD5, transparent);
     border-radius: 2px;
-    margin: 0 auto 20px;
+    margin: 0 auto 12px;
   }
   .header-brand {
-    font-size: 13px;
-    color: #7AAED6;
-    letter-spacing: 0.18em;
-    margin-bottom: 14px;
+    font-size: 12px; color: #7AAED6;
+    letter-spacing: 0.16em; margin-bottom: 8px;
   }
   .header-title {
-    font-size: 27px;
-    font-weight: bold;
-    color: #FFFFFF;
-    letter-spacing: 0.08em;
-    margin-bottom: 16px;
-    line-height: 1.25;
+    font-size: 23px; font-weight: bold; color: #FFFFFF;
+    letter-spacing: 0.07em; margin-bottom: 10px; line-height: 1.2;
   }
   .header-sub-wrap {
     display: inline-block;
     background: rgba(91,155,213,0.15);
     border: 1px solid rgba(91,155,213,0.3);
-    border-radius: 24px;
-    padding: 8px 18px;
+    border-radius: 20px; padding: 6px 14px;
   }
-  .header-sub {
-    font-size: 12px;
-    color: #9BBCDE;
-    line-height: 1.65;
-  }
+  .header-sub { font-size: 11px; color: #9BBCDE; line-height: 1.55; }
 
-  /* Tag Bar */
+  /* ── Tag Bar ── */
   .tag-bar {
-    background: #5B9BD5;
-    padding: 11px 24px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
+    background: #5B9BD5; padding: 9px 18px;
+    display: flex; align-items: center; gap: 10px;
   }
   .tag-badge {
-    background: #FFFFFF;
-    color: #1B3F6E;
-    font-size: 13px;
-    font-weight: bold;
-    padding: 3px 11px;
-    border-radius: 20px;
-    white-space: nowrap;
+    background: #FFFFFF; color: #1B3F6E;
+    font-size: 12px; font-weight: bold;
+    padding: 3px 10px; border-radius: 20px; white-space: nowrap;
   }
-  .tag-title {
-    font-size: 15px;
-    font-weight: bold;
-    color: #FFFFFF;
-    letter-spacing: 0.04em;
-  }
+  .tag-title { font-size: 14px; font-weight: bold; color: #FFFFFF; letter-spacing: 0.04em; }
 
-  /* Main Content */
-  .main {
-    padding: 12px 16px;
-  }
+  /* ── Main ── */
+  .main { padding: 10px 12px; }
 
-  /* Card */
+  /* ── Card ── */
   .card {
-    background: #FFFFFF;
-    border: 3px solid #5B9BD5;
-    border-radius: 14px;
-    padding: 14px 16px 10px;
-    margin-bottom: 12px;
+    background: #FFFFFF; border: 3px solid #5B9BD5;
+    border-radius: 12px; padding: 12px 14px 8px; margin-bottom: 10px;
   }
   .card-header {
-    font-size: 13px;
-    font-weight: bold;
-    color: #888780;
-    letter-spacing: 0.06em;
-    margin-bottom: 10px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid #EBF2F9;
+    font-size: 12px; font-weight: bold; color: #888780;
+    letter-spacing: 0.06em; margin-bottom: 8px;
+    padding-bottom: 6px; border-bottom: 1px solid #EBF2F9;
   }
 
-  /* Item Row */
+  /* ── Item ── */
   .item {
-    display: flex;
-    align-items: flex-start;
-    padding: 8px 0;
-    border-bottom: 1px solid #EBF2F9;
+    display: flex; align-items: flex-start;
+    padding: 7px 0; border-bottom: 1px solid #EBF2F9;
   }
   .item:last-child { border-bottom: none; }
 
   .item-badge {
-    width: 24px;
-    height: 24px;
-    background: #5B9BD5;
-    border-radius: 50%;
-    color: #FFFFFF;
-    font-size: 13px;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    margin-top: 1px;
+    width: 22px; height: 22px; background: #5B9BD5;
+    border-radius: 50%; color: #FFFFFF; font-size: 12px; font-weight: bold;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 1px;
   }
-
-  .item-content {
-    flex: 1;
-    margin-left: 10px;
-  }
-  .item-name {
-    font-size: 15px;
-    color: #2C2C2A;
-    font-weight: 500;
-    line-height: 1.4;
-  }
-  .item-name .highlight {
-    color: #1B3F6E;
-    font-weight: bold;
-  }
-  .item-subs {
-    margin-top: 3px;
-  }
-  .item-sub {
-    font-size: 12px;
-    color: #888780;
-    line-height: 1.5;
-  }
-
+  .item-content { flex: 1; margin-left: 9px; }
+  .item-name { font-size: 14px; color: #2C2C2A; font-weight: 500; line-height: 1.35; }
+  .item-name .highlight { color: #1B3F6E; font-weight: bold; }
+  .item-subs { margin-top: 2px; }
+  .item-sub { font-size: 11px; color: #888780; line-height: 1.45; }
   .item-price {
-    white-space: nowrap;
-    margin-left: 12px;
-    font-size: 15px;
-    font-weight: bold;
-    color: #5B9BD5;
-    padding-top: 1px;
+    white-space: nowrap; margin-left: 10px;
+    font-size: 14px; font-weight: bold; color: #5B9BD5; padding-top: 1px;
   }
 
-  /* Total Row */
+  /* ── Total ── */
   .total-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 0 2px;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 8px 0 2px;
   }
-  .total-label {
-    font-size: 13px;
-    color: #888780;
-  }
-  .total-price {
-    font-size: 15px;
-    color: #B4B2A9;
-    text-decoration: line-through;
-    font-weight: 500;
-  }
+  .total-label { font-size: 12px; color: #888780; }
+  .total-price { font-size: 14px; color: #B4B2A9; text-decoration: line-through; font-weight: 500; }
 
-  /* Price Block */
+  /* ── Price Block ── */
   .price-block {
-    background: #1B3F6E;
-    border-radius: 14px;
-    padding: 14px 20px;
-    text-align: center;
+    background: #1B3F6E; border-radius: 12px;
+    padding: 12px 18px; text-align: center;
   }
-  .price-hint {
-    font-size: 13px;
-    color: #9BBCDE;
-    margin-bottom: 8px;
-    letter-spacing: 0.04em;
-  }
-  .price-main {
-    font-size: 54px;
-    font-weight: bold;
-    color: #FFFFFF;
-    line-height: 1;
-    letter-spacing: -0.01em;
-  }
-  .price-unit {
-    font-size: 28px;
-    vertical-align: middle;
-    margin-right: 2px;
-  }
+  .price-hint { font-size: 12px; color: #9BBCDE; margin-bottom: 6px; letter-spacing: 0.04em; }
+  .price-main { font-size: 48px; font-weight: bold; color: #FFFFFF; line-height: 1; }
+  .price-unit { font-size: 24px; vertical-align: middle; margin-right: 2px; }
 
-  /* CTA */
-  .cta {
-    background: #5B9BD5;
-    padding: 14px 24px;
-    text-align: center;
-  }
-  .cta-main {
-    font-size: 16px;
-    font-weight: bold;
-    color: #FFFFFF;
-    letter-spacing: 0.05em;
-    margin-bottom: 5px;
-  }
-  .cta-sub {
-    font-size: 13px;
-    color: #D6E8F7;
-  }
+  /* ── CTA ── */
+  .cta { background: #5B9BD5; padding: 12px 20px; text-align: center; }
+  .cta-main { font-size: 15px; font-weight: bold; color: #FFFFFF; letter-spacing: 0.05em; margin-bottom: 4px; }
+  .cta-sub { font-size: 12px; color: #D6E8F7; }
 </style>
 </head>
 <body>
@@ -249,36 +139,24 @@
 
       <div class="item">
         <div class="item-badge">1</div>
-        <div class="item-content">
-          <div class="item-name">食物不耐受检测（210项）</div>
-        </div>
+        <div class="item-content"><div class="item-name">食物不耐受检测（210项）</div></div>
         <div class="item-price">¥3,280</div>
       </div>
-
       <div class="item">
         <div class="item-badge">2</div>
-        <div class="item-content">
-          <div class="item-name">肠道菌群检测</div>
-        </div>
+        <div class="item-content"><div class="item-name">肠道菌群检测</div></div>
         <div class="item-price">¥2,200</div>
       </div>
-
       <div class="item">
         <div class="item-badge">3</div>
-        <div class="item-content">
-          <div class="item-name">评估个性化自免疾病根源</div>
-        </div>
+        <div class="item-content"><div class="item-name">评估个性化自免疾病根源</div></div>
         <div class="item-price">¥1,000</div>
       </div>
-
       <div class="item">
         <div class="item-badge">4</div>
-        <div class="item-content">
-          <div class="item-name">医生 1v1 <span class="highlight">电话</span>报告深度解读</div>
-        </div>
+        <div class="item-content"><div class="item-name">医生 1v1 <span class="highlight">电话</span>报告深度解读</div></div>
         <div class="item-price">¥2,000</div>
       </div>
-
       <div class="item">
         <div class="item-badge">5</div>
         <div class="item-content">
@@ -290,28 +168,19 @@
         </div>
         <div class="item-price">¥2,000</div>
       </div>
-
       <div class="item">
         <div class="item-badge">6</div>
-        <div class="item-content">
-          <div class="item-name"><span class="highlight">全年</span> 3v1 跟进指导</div>
-        </div>
+        <div class="item-content"><div class="item-name"><span class="highlight">全年</span> 3v1 跟进指导</div></div>
         <div class="item-price">¥5,000</div>
       </div>
-
       <div class="item">
         <div class="item-badge">7</div>
-        <div class="item-content">
-          <div class="item-name"><span class="highlight">全年</span>疾病问题无限次咨询</div>
-        </div>
+        <div class="item-content"><div class="item-name"><span class="highlight">全年</span>疾病问题无限次咨询</div></div>
         <div class="item-price">¥5,000</div>
       </div>
-
       <div class="item">
         <div class="item-badge">8</div>
-        <div class="item-content">
-          <div class="item-name">每季度阶段性评估 + 方案优化</div>
-        </div>
+        <div class="item-content"><div class="item-name">每季度阶段性评估 + 方案优化</div></div>
         <div class="item-price">¥1,500</div>
       </div>
 

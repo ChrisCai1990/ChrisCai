@@ -16,6 +16,7 @@ base = os.path.dirname(os.path.abspath(__file__))
 page_css = weasyprint.CSS(string='''
     @page { size: 390px 5000px; margin: 0; }
     body  { margin: 0 !important; padding: 0 !important; }
+    .page { width: 390px !important; }
 ''')
 
 for html_file, name in files:
