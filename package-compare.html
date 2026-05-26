@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>自免疾病精准调理套餐 · 对比</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: "WenQuanYi Zen Hei", "Noto Sans CJK SC", "PingFang SC", sans-serif;
+  background: #EDF2F8;
+  display: flex; justify-content: center;
+}
+.page { width: 390px; max-width: 100%; background: #EDF2F8; }
+
+.header {
+  background: linear-gradient(150deg, #091C35 0%, #142F55 45%, #1B3F6E 100%);
+  padding: 24px 22px 18px; text-align: center;
+}
+.logo-row {
+  display: flex; align-items: center; justify-content: center;
+  gap: 8px; margin-bottom: 12px;
+}
+.logo-mark {
+  width: 26px; height: 26px;
+  background: linear-gradient(135deg, #5B9BD5, #2C5F9E);
+  border-radius: 6px; color: #FFF; font-size: 13px; font-weight: bold;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid rgba(255,255,255,0.25);
+}
+.logo-name { font-size: 12px; color: #9BBCDE; letter-spacing: 0.16em; }
+.header-title { font-size: 22px; font-weight: bold; color: #FFFFFF; letter-spacing: 0.07em; line-height: 1.2; margin-bottom: 13px; }
+.tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; }
+.tag {
+  background: rgba(91,155,213,0.18); border: 1px solid rgba(91,155,213,0.38);
+  color: #9BBCDE; font-size: 10.5px; padding: 3px 9px; border-radius: 12px;
+}
+
+/* ════ MAIN ════ */
+.main { padding: 10px 12px; }
+
+/* ════ COMPARE TABLE ════ */
+.compare-card {
+  background: #FFFFFF; border-radius: 12px;
+  box-shadow: 0 2px 14px rgba(27,63,110,0.1);
+  overflow: hidden; margin-bottom: 10px;
+}
+
+/* Column header row */
+.col-heads {
+  display: flex;
+}
+.col-label-head {
+  flex: 0 0 42%; background: #0D2647;
+  padding: 10px 12px;
+  display: flex; align-items: flex-end;
+}
+.col-label-head-text { font-size: 11px; font-weight: bold; color: #9BBCDE; letter-spacing: 0.06em; }
+.col-up-head {
+  flex: 0 0 29%; background: #5B9BD5;
+  padding: 8px 6px; text-align: center;
+}
+.col-basic-head {
+  flex: 0 0 29%; background: #2C5F9E;
+  padding: 8px 6px; text-align: center;
+}
+.col-version { font-size: 12px; font-weight: bold; color: #FFFFFF; margin-bottom: 3px; }
+.col-price { font-size: 16px; font-weight: bold; color: #FFFFFF; }
+
+/* Data rows */
+.row {
+  display: flex; align-items: center;
+  border-bottom: 1px solid #F0F5FB;
+}
+.row:last-child { border-bottom: none; border-top: 1.5px solid #DCE9F5; }
+.row:nth-child(even) { background: #FAFCFF; }
+
+.cell-label {
+  flex: 0 0 42%; padding: 9px 12px;
+  font-size: 12.5px; color: #1A2A3A; font-weight: 500; line-height: 1.3;
+}
+.cell {
+  flex: 0 0 29%; padding: 9px 4px; text-align: center;
+}
+
+.check-up    { color: #5B9BD5; font-size: 17px; font-weight: bold; }
+.check-basic { color: #7AAED6; font-size: 17px; font-weight: bold; }
+.dash        { color: #C5D9EE; font-size: 16px; }
+.val-up      { font-size: 12px; color: #1B3F6E; font-weight: bold; }
+.val-basic   { font-size: 12px; color: #2C5F9E; }
+.val-strike  { font-size: 12px; color: #B4B2A9; text-decoration: line-through; }
+
+/* ════ DUAL PRICE ════ */
+.price-row { display: flex; gap: 10px; margin-bottom: 0; }
+
+.price-box {
+  flex: 1; border-radius: 12px; padding: 13px 14px;
+  box-shadow: 0 3px 14px rgba(13,38,71,0.22);
+}
+.price-box.up    { background: linear-gradient(135deg, #0D2647, #1B3F6E); }
+.price-box.basic { background: linear-gradient(135deg, #1A3A6E, #2C5F9E); }
+
+.pb-badge {
+  display: inline-block; font-size: 10px; font-weight: bold;
+  padding: 2px 8px; border-radius: 10px; margin-bottom: 6px;
+}
+.price-box.up .pb-badge    { background: #5B9BD5; color: #FFF; }
+.price-box.basic .pb-badge { background: #7AAED6; color: #FFF; }
+
+.pb-price { font-size: 36px; font-weight: bold; color: #FFFFFF; line-height: 1; margin-bottom: 5px; }
+.pb-unit  { font-size: 18px; vertical-align: middle; margin-right: 1px; }
+
+.pb-save {
+  display: inline-block;
+  background: linear-gradient(135deg, #F0D060, #D4A830);
+  border-radius: 6px; padding: 2px 8px;
+  font-size: 11px; font-weight: bold; color: #3D2800;
+}
+
+/* ════ CTA ════ */
+.cta {
+  background: linear-gradient(135deg, #4A8BC4, #5B9BD5);
+  padding: 12px 20px; text-align: center;
+  margin-top: 10px;
+}
+.cta-main { font-size: 14px; font-weight: bold; color: #FFFFFF; letter-spacing: 0.05em; margin-bottom: 3px; }
+.cta-sub { font-size: 11px; color: rgba(255,255,255,0.78); }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="logo-row">
+      <div class="logo-mark">汇</div>
+      <div class="logo-name">汇泽健康管理 · 刘院长团队</div>
+    </div>
+    <div class="header-title">自免疾病精准调理套餐</div>
+    <div class="tags">
+      <span class="tag">桥本</span>
+      <span class="tag">类风湿</span>
+      <span class="tag">干燥综合征</span>
+      <span class="tag">红斑狼疮</span>
+      <span class="tag">自免肝</span>
+      <span class="tag">自免脑</span>
+    </div>
+  </div>
+
+  <div class="main">
+
+    <div class="compare-card">
+      <!-- Column headers -->
+      <div class="col-heads">
+        <div class="col-label-head"><div class="col-label-head-text">服务项目</div></div>
+        <div class="col-up-head">
+          <div class="col-version">升级版</div>
+          <div class="col-price">¥5,680</div>
+        </div>
+        <div class="col-basic-head">
+          <div class="col-version">基础版</div>
+          <div class="col-price">¥2,980</div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="cell-label">食物不耐受检测（210项）</div>
+        <div class="cell"><span class="check-up">✓</span></div>
+        <div class="cell"><span class="check-basic">✓</span></div>
+      </div>
+      <div class="row">
+        <div class="cell-label">肠道菌群检测</div>
+        <div class="cell"><span class="check-up">✓</span></div>
+        <div class="cell"><span class="dash">—</span></div>
+      </div>
+      <div class="row">
+        <div class="cell-label">评估个性化自免疾病根源</div>
+        <div class="cell"><span class="check-up">✓</span></div>
+        <div class="cell"><span class="check-basic">✓</span></div>
+      </div>
+      <div class="row">
+        <div class="cell-label">报告解读方式</div>
+        <div class="cell"><span class="val-up">电话 1v1</span></div>
+        <div class="cell"><span class="val-basic">文字 1v1</span></div>
+      </div>
+      <div class="row">
+        <div class="cell-label">专属调理方案定制</div>
+        <div class="cell"><span class="check-up">✓</span></div>
+        <div class="cell"><span class="check-basic">✓</span></div>
+      </div>
+      <div class="row">
+        <div class="cell-label">3v1 跟进指导</div>
+        <div class="cell"><span class="val-up">全年</span></div>
+        <div class="cell"><span class="val-basic">半年</span></div>
+      </div>
+      <div class="row">
+        <div class="cell-label">疾病问题无限次咨询</div>
+        <div class="cell"><span class="val-up">全年</span></div>
+        <div class="cell"><span class="val-basic">半年</span></div>
+      </div>
+      <div class="row">
+        <div class="cell-label">阶段性评估 + 方案优化</div>
+        <div class="cell"><span class="val-up">4次/年</span></div>
+        <div class="cell"><span class="val-basic">2次/年</span></div>
+      </div>
+      <div class="row">
+        <div class="cell-label">权益总价值</div>
+        <div class="cell"><span class="val-strike">¥21,980</span></div>
+        <div class="cell"><span class="val-strike">¥13,280</span></div>
+      </div>
+    </div>
+
+    <!-- Dual price -->
+    <div class="price-row">
+      <div class="price-box up">
+        <div class="pb-badge">推荐 · 升级版</div>
+        <div class="pb-price"><span class="pb-unit">¥</span>5,680</div>
+        <div class="pb-save">立省 ¥16,300</div>
+      </div>
+      <div class="price-box basic">
+        <div class="pb-badge">基础版</div>
+        <div class="pb-price"><span class="pb-unit">¥</span>2,980</div>
+        <div class="pb-save">立省 ¥10,300</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="cta">
+    <div class="cta-main">不确定选哪款？私信健康助理免费评估</div>
+    <div class="cta-sub">汇泽健康管理 · 刘院长团队</div>
+  </div>
+
+</div>
+</body>
+</html>
