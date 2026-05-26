@@ -268,12 +268,31 @@ html,body{height:100%;background:#060D18;font-family:'PingFang SC','Microsoft Ya
 
 /* ── SCROLL BAR STAGE ── */
 #stage::-webkit-scrollbar{display:none}
+
+/* ── MOBILE ── */
+#mobile-menu-btn{display:none}
+#sidebar-overlay{display:none;position:fixed;inset:48px 0 0 0;background:rgba(0,0,0,0.55);z-index:89}
+@media(max-width:768px){
+  html,body{overflow:auto;height:auto}
+  #layout{height:auto;min-height:calc(100vh - 48px)}
+  #sidebar{position:fixed;top:48px;left:-240px;bottom:0;z-index:90;transition:left .25s;width:220px}
+  #sidebar.open{left:0}
+  #sidebar-overlay.show{display:block}
+  #stage{height:auto;padding:12px 0 70px;justify-content:flex-start;align-items:flex-start;overflow:visible}
+  #slide-wrap{transform-origin:top left;flex-shrink:0}
+  .mode-group{display:none}
+  #topbar .ctrl-btn:not(.primary){display:none}
+  #mobile-menu-btn{display:flex;align-items:center;justify-content:center;background:rgba(196,163,90,0.12);border:1px solid rgba(196,163,90,0.3);color:var(--gold);width:32px;height:32px;border-radius:6px;cursor:pointer;font-size:18px;flex-shrink:0}
+  #topbar{gap:8px}
+  #topbar .brand{font-size:11px;flex:1;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+}
 </style>
 </head>
 <body>
 
 <!-- TOP BAR -->
 <div id="topbar">
+  <button id="mobile-menu-btn" onclick="toggleSidebar()">☰</button>
   <div class="brand">✦ 桥本疗愈指南 · 汇泽甲功健康</div>
   <div class="controls">
     <div class="mode-group">
@@ -286,6 +305,7 @@ html,body{height:100%;background:#060D18;font-family:'PingFang SC','Microsoft Ya
 </div>
 
 <!-- LAYOUT -->
+<div id="sidebar-overlay" onclick="toggleSidebar()"></div>
 <div id="layout">
   <!-- SIDEBAR -->
   <div id="sidebar">
@@ -1550,6 +1570,35 @@ function exportHTML() {
 function openLink(type) {
   alert('💙 加微信咨询\n\n请在短视频/直播中引导用户：\n点击主页 → 加微信 → 备注"疗愈指南"\n\n我们将一对一为您分析桥本情况，制定专属调理方案。');
 }
+
+// Mobile sidebar toggle
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('sidebar-overlay').classList.toggle('show');
+}
+
+// Close sidebar when a slide is selected on mobile
+document.querySelectorAll('.sidebar-item').forEach(el => {
+  el.addEventListener('click', () => {
+    if (window.innerWidth <= 768) toggleSidebar();
+  });
+});
+
+// Mobile slide scaling
+function resizeSlide() {
+  const wrap = document.getElementById('slide-wrap');
+  const stage = document.getElementById('stage');
+  if (window.innerWidth <= 768) {
+    const scale = window.innerWidth / 960;
+    wrap.style.transform = 'scale(' + scale + ')';
+    stage.style.minHeight = Math.round(540 * scale + 70) + 'px';
+  } else {
+    wrap.style.transform = '';
+    stage.style.minHeight = '';
+  }
+}
+window.addEventListener('resize', resizeSlide);
+resizeSlide();
 
 // Init
 updateNav();
