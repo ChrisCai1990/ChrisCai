@@ -1,4 +1,4 @@
-name: Deploy to ECS
+name: 部署到阿里云
 
 on:
   push:
@@ -10,25 +10,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: 拉取代码
         uses: actions/checkout@v4
 
-      - name: Setup SSH key
+      - name: 配置 SSH 密钥
         run: |
           mkdir -p ~/.ssh
-          printf '%s\n' "${{ secrets.ECS_SSH_KEY }}" > ~/.ssh/id_rsa
+          printf '%s\n' "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H ${{ secrets.ECS_HOST }} >> ~/.ssh/known_hosts
+          ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
 
-      - name: Sync files to ECS
+      - name: 同步文件到服务器
         run: |
-          ssh ${{ secrets.ECS_USERNAME }}@${{ secrets.ECS_HOST }} "mkdir -p /var/www/chriscai"
+          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "mkdir -p /var/www/chriscai"
           rsync -avz --delete \
             --exclude='.git' \
             --exclude='.github' \
             --exclude='个人工作空间' \
-            ./ ${{ secrets.ECS_USERNAME }}@${{ secrets.ECS_HOST }}:/var/www/chriscai/
+            ./ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/var/www/chriscai/
 
-      - name: Reload Nginx
+      - name: 重载 Nginx
         run: |
-          ssh ${{ secrets.ECS_USERNAME }}@${{ secrets.ECS_HOST }} "nginx -s reload"
+          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "nginx -s reload"
+          echo "部署完成 ✓"
