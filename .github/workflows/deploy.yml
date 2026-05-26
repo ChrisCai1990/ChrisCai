@@ -13,12 +13,12 @@ jobs:
       - name: 拉取代码
         uses: actions/checkout@v4
 
-      - name: 配置 SSH 密钥
+      - name: 配置 SSH
         run: |
           mkdir -p ~/.ssh
           printf '%s\n' "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+          ssh-keyscan -p 22 -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts 2>/dev/null
 
       - name: 同步文件到服务器
         run: |
@@ -31,5 +31,7 @@ jobs:
 
       - name: 重载 Nginx
         run: |
-          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "nginx -s reload"
-          echo "部署完成 ✓"
+          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "nginx -t && nginx -s reload"
+
+      - name: 部署完成通知
+        run: echo "✅ 部署完成 - $(date '+%Y-%m-%d %H:%M:%S')"
