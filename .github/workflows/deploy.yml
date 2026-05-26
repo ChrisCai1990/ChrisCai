@@ -1,0 +1,33 @@
+name: Deploy to ECS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.ECS_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.ECS_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Sync files to ECS
+        run: |
+          rsync -avz --delete \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='个人工作空间' \
+            ./ ${{ secrets.ECS_USERNAME }}@${{ secrets.ECS_HOST }}:/var/www/html/chriscai/
+
+      - name: Reload Nginx
+        run: |
+          ssh ${{ secrets.ECS_USERNAME }}@${{ secrets.ECS_HOST }} "nginx -s reload"
