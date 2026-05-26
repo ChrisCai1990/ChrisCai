@@ -22,11 +22,12 @@ jobs:
 
       - name: Sync files to ECS
         run: |
+          ssh ${{ secrets.ECS_USERNAME }}@${{ secrets.ECS_HOST }} "mkdir -p /var/www/chriscai"
           rsync -avz --delete \
             --exclude='.git' \
             --exclude='.github' \
             --exclude='个人工作空间' \
-            ./ ${{ secrets.ECS_USERNAME }}@${{ secrets.ECS_HOST }}:/var/www/html/chriscai/
+            ./ ${{ secrets.ECS_USERNAME }}@${{ secrets.ECS_HOST }}:/var/www/chriscai/
 
       - name: Reload Nginx
         run: |
