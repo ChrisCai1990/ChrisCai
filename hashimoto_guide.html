@@ -268,12 +268,31 @@ html,body{height:100%;background:#060D18;font-family:'PingFang SC','Microsoft Ya
 
 /* ── SCROLL BAR STAGE ── */
 #stage::-webkit-scrollbar{display:none}
+
+/* ── MOBILE ── */
+#mobile-menu-btn{display:none}
+#sidebar-overlay{display:none;position:fixed;inset:48px 0 0 0;background:rgba(0,0,0,0.55);z-index:89}
+@media(max-width:768px){
+  html,body{overflow:auto;height:auto}
+  #layout{height:auto;min-height:calc(100vh - 48px)}
+  #sidebar{position:fixed;top:48px;left:-240px;bottom:0;z-index:90;transition:left .25s;width:220px}
+  #sidebar.open{left:0}
+  #sidebar-overlay.show{display:block}
+  #stage{height:auto;padding:12px 0 70px;justify-content:flex-start;align-items:flex-start;overflow:visible}
+  #slide-wrap{transform-origin:top left;flex-shrink:0}
+  .mode-group{display:none}
+  #topbar .ctrl-btn:not(.primary){display:none}
+  #mobile-menu-btn{display:flex;align-items:center;justify-content:center;background:rgba(196,163,90,0.12);border:1px solid rgba(196,163,90,0.3);color:var(--gold);width:32px;height:32px;border-radius:6px;cursor:pointer;font-size:18px;flex-shrink:0}
+  #topbar{gap:8px}
+  #topbar .brand{font-size:11px;flex:1;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+}
 </style>
 </head>
 <body>
 
 <!-- TOP BAR -->
 <div id="topbar">
+  <button id="mobile-menu-btn" onclick="toggleSidebar()">☰</button>
   <div class="brand">✦ 桥本疗愈指南 · 汇泽甲功健康</div>
   <div class="controls">
     <div class="mode-group">
@@ -286,6 +305,7 @@ html,body{height:100%;background:#060D18;font-family:'PingFang SC','Microsoft Ya
 </div>
 
 <!-- LAYOUT -->
+<div id="sidebar-overlay" onclick="toggleSidebar()"></div>
 <div id="layout">
   <!-- SIDEBAR -->
   <div id="sidebar">
@@ -1524,16 +1544,66 @@ function exportPDF() {
   alert('PDF导出方法：\n\n1. 按 Ctrl+P（Mac: Cmd+P）打开打印对话框\n2. 目标打印机选择"另存为PDF"\n3. 更多设置→纸张大小选"A4横向"\n4. 取消勾选"页眉和页脚"\n5. 背景图形✅ 开启\n6. 点击保存\n\n💡 建议用 Chrome 浏览器效果最佳');
 }
 
-function exportPPT() {
-  document.getElementById('export-overlay').classList.remove('show');
-  // Generate a PPT template instruction doc
-  const content = `桥本疗愈指南 PPT 重建指南\n\n设计规范：\n- 幻灯片尺寸：宽屏 16:9（33.87×19.05cm）\n- 背景色：#0B1A2E（深海军蓝）\n- 主标题字体：思源黑体 Bold，金色 #C4A35A\n- 正文字体：思源黑体 Regular，淡蓝白 #C8DCE8\n- 强调色：金色 #D4AF37 / 青绿色 #1A9E7A\n- 卡片背景：rgba(255,255,255,0.04) → 用浅灰 #1A3050 代替\n\n章节颜色：\n- 认知篇：金色系\n- 饮食篇：金色+青绿\n- 运动/睡眠/情绪：青绿系\n- 营养素：金色系\n- 案例：青绿系\n\n本 HTML 版即为完整内容参考，截图后在 PPT 中重排即可。`;
+function loadScript(src) {
+  return new Promise((resolve, reject) => {
+    if (document.querySelector('script[src="' + src + '"]')) { resolve(); return; }
+    const s = document.createElement('script');
+    s.src = src; s.onload = resolve; s.onerror = reject;
+    document.head.appendChild(s);
+  });
+}
 
-  const blob = new Blob([content], {type:'text/plain;charset=utf-8'});
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = '桥本疗愈指南_PPT重建指南.txt';
-  a.click();
+async function exportPPT() {
+  document.getElementById('export-overlay').classList.remove('show');
+
+  const notice = document.createElement('div');
+  notice.style.cssText = 'position:fixed;inset:0;background:rgba(6,13,24,0.92);z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px';
+  notice.innerHTML = '<div style="font-size:28px">⏳</div><div style="color:#C4A35A;font-size:15px;font-weight:700">正在生成 PPT，请稍候…</div><div id="ppt-prog" style="color:#8AAABB;font-size:12px">加载中…</div>';
+  document.body.appendChild(notice);
+  const prog = document.getElementById('ppt-prog');
+
+  try {
+    prog.textContent = '加载依赖库…';
+    await loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js');
+    await loadScript('https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js');
+
+    const savedCurrent = current;
+    const slideEls = document.querySelectorAll('.slide');
+    const frame = document.getElementById('slide-frame');
+    const indices = mode === 'hook' ? hookSlides : Array.from({length: slideEls.length}, (_, i) => i);
+
+    const pptx = new PptxGenJS();
+    pptx.layout = 'LAYOUT_16x9';
+
+    for (let i = 0; i < indices.length; i++) {
+      prog.textContent = '截图第 ' + (i + 1) + ' / ' + indices.length + ' 页…';
+      slideEls.forEach(s => { s.classList.remove('active'); s.style.display = 'none'; });
+      const el = slideEls[indices[i]];
+      el.style.display = '';
+      el.classList.add('active');
+      await new Promise(r => setTimeout(r, 80));
+
+      const canvas = await html2canvas(frame, {
+        scale: 1, useCORS: true,
+        backgroundColor: '#0B1A2E',
+        width: 960, height: 540,
+        logging: false
+      });
+
+      const slide = pptx.addSlide();
+      slide.addImage({ data: canvas.toDataURL('image/jpeg', 0.92), x: 0, y: 0, w: '100%', h: '100%' });
+    }
+
+    slideEls.forEach(s => { s.classList.remove('active'); s.style.display = ''; });
+    slideEls[savedCurrent].classList.add('active');
+
+    prog.textContent = '打包文件…';
+    await pptx.writeFile({ fileName: '桥本疗愈指南.pptx' });
+  } catch(e) {
+    alert('导出失败：' + e.message);
+  } finally {
+    document.body.removeChild(notice);
+  }
 }
 
 function exportHTML() {
@@ -1550,6 +1620,35 @@ function exportHTML() {
 function openLink(type) {
   alert('💙 加微信咨询\n\n请在短视频/直播中引导用户：\n点击主页 → 加微信 → 备注"疗愈指南"\n\n我们将一对一为您分析桥本情况，制定专属调理方案。');
 }
+
+// Mobile sidebar toggle
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('sidebar-overlay').classList.toggle('show');
+}
+
+// Close sidebar when a slide is selected on mobile
+document.querySelectorAll('.sidebar-item').forEach(el => {
+  el.addEventListener('click', () => {
+    if (window.innerWidth <= 768) toggleSidebar();
+  });
+});
+
+// Mobile slide scaling
+function resizeSlide() {
+  const wrap = document.getElementById('slide-wrap');
+  const stage = document.getElementById('stage');
+  if (window.innerWidth <= 768) {
+    const scale = window.innerWidth / 960;
+    wrap.style.transform = 'scale(' + scale + ')';
+    stage.style.minHeight = Math.round(540 * scale + 70) + 'px';
+  } else {
+    wrap.style.transform = '';
+    stage.style.minHeight = '';
+  }
+}
+window.addEventListener('resize', resizeSlide);
+resizeSlide();
 
 // Init
 updateNav();
