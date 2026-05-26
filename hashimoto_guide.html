@@ -1553,6 +1553,62 @@ function loadScript(src) {
   });
 }
 
+function rgbToHex(rgb) {
+  if (!rgb || rgb === 'transparent') return null;
+  const m = rgb.match(/\d+/g);
+  if (!m || m.length < 3) return null;
+  const hex = m.slice(0,3).map(n => Math.min(255, parseInt(n)).toString(16).padStart(2,'0')).join('');
+  return hex === '000000' && rgb.includes('rgba(0, 0, 0, 0)') ? null : hex.toUpperCase();
+}
+
+function getSlideTexts(frame) {
+  const fr = frame.getBoundingClientRect();
+  const S = 10 / 960;
+  const SEL = [
+    'h1','h2','h3',
+    '.slide-title','.slide-subtitle',
+    '.card-title','.card-body',
+    '.ct','.cb',
+    '.step-t','.step-d',
+    '.ncrd-name','.ncrd-desc','.ncrd-warn',
+    '.tl-t','.tl-d',
+    '.story-name','.story-role','.story-text','.story-highlight',
+    '.case-body','.case-result',
+    '.cta-title','.cta-sub','.cta-st',
+    '.s-cover .desc','.s-chapter .ch-desc',
+    '.badge-h-t','.sh-label',
+    '.cover-brand','.cover-tag',
+    '.cstat .n','.cstat .l',
+    '.sn','.sl'
+  ].join(',');
+
+  const results = [];
+  frame.querySelectorAll(SEL).forEach(el => {
+    const text = el.innerText.trim();
+    if (!text) return;
+    const r = el.getBoundingClientRect();
+    const x = parseFloat(((r.left - fr.left) * S).toFixed(3));
+    const y = parseFloat(((r.top  - fr.top)  * S).toFixed(3));
+    const w = parseFloat((r.width  * S).toFixed(3));
+    const h = parseFloat((r.height * S).toFixed(3));
+    if (x < -0.2 || y < -0.2 || x > 10.2 || y > 5.8 || w < 0.05 || h < 0.01) return;
+    const cs = window.getComputedStyle(el);
+    const fontSize = Math.max(6, Math.round(parseFloat(cs.fontSize) * 0.75));
+    const color = rgbToHex(cs.color) || 'FFFFFF';
+    const bold = parseInt(cs.fontWeight) >= 600;
+    const align = cs.textAlign === 'center' ? 'center' : cs.textAlign === 'right' ? 'right' : 'left';
+    results.push({
+      text,
+      x: Math.max(0, x),
+      y: Math.max(0, y),
+      w: Math.max(0.3, Math.min(w, 10 - Math.max(0, x))),
+      h: Math.max(0.12, h),
+      fontSize, color, bold, align
+    });
+  });
+  return results;
+}
+
 async function exportPPT() {
   document.getElementById('export-overlay').classList.remove('show');
 
@@ -1576,12 +1632,23 @@ async function exportPPT() {
     pptx.layout = 'LAYOUT_16x9';
 
     for (let i = 0; i < indices.length; i++) {
-      prog.textContent = '截图第 ' + (i + 1) + ' / ' + indices.length + ' 页…';
+      prog.textContent = '处理第 ' + (i + 1) + ' / ' + indices.length + ' 页…';
       slideEls.forEach(s => { s.classList.remove('active'); s.style.display = 'none'; });
       const el = slideEls[indices[i]];
       el.style.display = '';
       el.classList.add('active');
-      await new Promise(r => setTimeout(r, 80));
+      await new Promise(r => setTimeout(r, 100));
+
+      // 截图作为背景（临时隐藏文字，只保留装饰层）
+      const textEls = el.querySelectorAll('*');
+      const hidden = [];
+      textEls.forEach(te => {
+        if (te.childElementCount === 0 && te.innerText && te.innerText.trim()) {
+          hidden.push({ el: te, v: te.style.visibility });
+          te.style.visibility = 'hidden';
+        }
+      });
+      await new Promise(r => setTimeout(r, 40));
 
       const canvas = await html2canvas(frame, {
         scale: 1, useCORS: true,
@@ -1590,8 +1657,31 @@ async function exportPPT() {
         logging: false
       });
 
+      // 恢复文字可见
+      hidden.forEach(h => { h.el.style.visibility = h.v; });
+
       const slide = pptx.addSlide();
+      // 背景图（无文字）
       slide.addImage({ data: canvas.toDataURL('image/jpeg', 0.92), x: 0, y: 0, w: '100%', h: '100%' });
+
+      // 提取文字层，叠加为可编辑文本框
+      const texts = getSlideTexts(frame);
+      texts.forEach(t => {
+        try {
+          slide.addText(t.text, {
+            x: t.x, y: t.y, w: t.w, h: t.h,
+            fontSize: t.fontSize,
+            color: t.color,
+            bold: t.bold,
+            align: t.align,
+            fontFace: 'Microsoft YaHei',
+            fill: { type: 'none' },
+            line: { type: 'none' },
+            wrap: true,
+            valign: 'top'
+          });
+        } catch(_) {}
+      });
     }
 
     slideEls.forEach(s => { s.classList.remove('active'); s.style.display = ''; });
